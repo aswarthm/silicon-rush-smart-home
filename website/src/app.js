@@ -50,11 +50,17 @@ function drawWeekly(){
     }
 
     var usageData = data["Devices"]["usage"]
-    console.log(usageData)
+    //console.log(usageData)
+
+    var htmlString = ""
+    var srNo = 0;
+    var costPerWeek = 0;
     for (var dev in usageData){
-        console.log(dev,usageData[dev])
+      srNo += 1;
+        //console.log(dev,usageData[dev])
+        var usageTime = 0
         for (let i=0; i<usageData[dev].length; i++ ){
-            console.log(usageData[dev][i])
+            //console.log(usageData[dev][i])
            
 
             var tempDate = new Date(usageData[dev][i]["st"])
@@ -68,20 +74,35 @@ function drawWeekly(){
 
 
             if(new Date().valueOf() - tempDate.valueOf() < 7*24*3600*1000 ){
-                console.log(tempDate, tempEndDate)
+                //console.log(tempDate, tempEndDate)
                 
                   var stTime = new Date(0,0,0,tempDate.getHours(), tempDate.getMinutes(),tempDate.getSeconds())
                   var endTime = new Date(0,0,0,tempEndDate.getHours(),tempEndDate.getMinutes(), tempEndDate.getSeconds())
+
+                  usageTime += tempEndDate.valueOf() - tempDate.valueOf()
                   
-                  rows[rows.length] = [days[tempDate.getDay()], dev, stTime, endTime]                
+                  rows[rows.length] = [days[tempDate.getDay()], dev, stTime, endTime] 
+                  
+
 
             }
         }
+        console.log(dev, usageTime)
+        var wattage = data["Devices"]["powers"][dev]
+        var powerConsumed = usageTime/(1000*3600)*(wattage/1000)
+        var perDayCost = powerConsumed*data["powerCost"]
+        costPerWeek += perDayCost
+
+        htmlString += '<tr class="tablerow"><th scope="row" align="left">' + srNo + '</th><td class="align">'  + dev + '</td><td class="align">' + powerConsumed.toFixed(2) + '</td><td class="align">' + perDayCost.toFixed(1) + '</td></tr>'
+
+
         //rows[0] = ["Monday", "llight", new Date(0,0,0,12,0,0), new Date(0,0,0,13,0,0)]
-        console.log(rows)
+        //console.log(rows)
         
     }  
     drawChart(rows, "timeline")
+    document.getElementById("powerTable").innerHTML = htmlString
+    document.getElementById("weeklyCost").innerHTML = costPerWeek.toFixed(1)
 });
     
 }
@@ -106,7 +127,7 @@ function drawDaily(){
       }
 
       if(new Date().getDay() + magicDayChanger  == tempDate.getDay() ){
-        console.log(tempDate, tempEndDate)
+        //console.log(tempDate, tempEndDate)
         
           var stTime = new Date(0,0,0,tempDate.getHours(), tempDate.getMinutes(),tempDate.getSeconds())
           var endTime = new Date(0,0,0,tempEndDate.getHours(),tempEndDate.getMinutes(), tempEndDate.getSeconds())
@@ -115,19 +136,9 @@ function drawDaily(){
         
         
         }
-
-
-
-
-      }
-
-      
+      }   
     }
     drawChart(rows, "dailychart")
-
-
-
-
   })
 
 
@@ -142,7 +153,7 @@ function drawDaily(){
 
 
 
-
+//htmlString += '<tr class="tablerow"><th scope="row" align="left">' + i + '</th><td class="align">'  + t + '<td class="align">' + listTeachers[t]/60 + '</td></tr>'
 
 
 
