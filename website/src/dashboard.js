@@ -30,11 +30,10 @@ function turnOn(device){
     get(child(dbRef, '/')).then((snapshot) => {
         data = snapshot.val()
         console.log(data["Devices"]["usage"][device])
-        
 
     })
 
-    set(ref(database, "/Devices/usage/" + device ), 1  )
+
     
 
 }
