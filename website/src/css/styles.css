@@ -1,0 +1,36 @@
+#pricing{
+  padding: 7% 15%;
+  font-family: "Montserrat";
+}
+.sign-up{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border: 3px solid;
+}
+.card-header{
+  background-color: #FFB72B;
+  text-align: center;
+
+}
+.p-intro-pricing{
+  padding-bottom: 50px;
+
+}
+.p-pricing{
+  font-family: "Open Sans Condensed";
+  font-size: 1.3rem;
+  color: black;
+  font-weight: 100;
+  text-align: center;
+}
+.h2-pricing{
+  text-align: left;
+}
+.details-card-1{
+  padding: 40px;
+}
+.details-card-inside{
+  margin-bottom: 20px;
+}
