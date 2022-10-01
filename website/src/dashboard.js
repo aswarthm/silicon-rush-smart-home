@@ -22,19 +22,55 @@ const database = getDatabase(app);
 const dbRef = ref(getDatabase());
 
 
+function toggle(device){
+  get(child(dbRef, '/Devices/')).then((snapshot) => {
+    if (snapshot.val()[device]){
+      turnOff(device)
+    }
+    else{
+      turnOn(device)
+    }
+  })
 
+}
+
+toggle("Device2")
 
 function turnOn(device){
     set(ref(database, "/Devices/" + device ), 1  )
 
     get(child(dbRef, '/')).then((snapshot) => {
         data = snapshot.val()
-        console.log(data["Devices"]["usage"][device])
+        var usageData = data["Devices"]["usage"][device]
+    console.log(usageData.length)
 
+    set(ref(database, "/Devices/usage/" + device + "/"+ usageData.length), {
+
+      st : new Date().valueOf(),
+      dur: -1
+
+    }  )   
     })
-
-
     
 
 }
+
+
+function turnOff(device){
+  set(ref(database, "/Devices/" + device ), 0 )
+
+  get(child(dbRef, '/')).then((snapshot) => {
+      data = snapshot.val()
+      var usageData = data["Devices"]["usage"][device]
+  console.log(usageData, usageData.length-1)
+
+  console.log( "/Devices/usage/" + device + "/"+ (usageData.length -1))
+  set(ref(database, "/Devices/usage/" + device + "/"+ (usageData.length - 1) + "/dur"), new Date().valueOf() - usageData[usageData.length - 1]["st"])
+
+
+  })
+  
+
+}
+
 
