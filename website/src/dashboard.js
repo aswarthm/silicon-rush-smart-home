@@ -106,5 +106,5 @@ function image_lock(){
 var interval=setInterval(function(){
   image_lock();
   read_data();
-},5000);
+},100);
 

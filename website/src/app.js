@@ -1,4 +1,7 @@
 var data;
+var magicDayChanger = 0
+
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
 import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
@@ -33,24 +36,24 @@ var days = [
 
 function drawWeekly(){
     get(child(dbRef, '/')).then((snapshot) => {
-        console.log(snapshot.val())
         data = snapshot.val()
-        console.log(data["Devices"]["usage"]["Device2"])
-
+        //console.log(data)
+        
     var rows = []
 
     var curDate = new Date();
     for (let i = 6; i >= 0; i--) {
         var tempDate = new Date(curDate.valueOf() - i * 24 * 60 * 60 * 1000);
-        console.log(tempDate.getDate(), tempDate.getMonth() + 1);
+        //console.log(tempDate.getDate(), tempDate.getMonth() + 1);
         rows[rows.length] = [days[tempDate.getDay()], "",  new Date(0,0,0,0,0,0), new Date(0,0,0,0,0,1)]
-
+        
     }
 
     var usageData = data["Devices"]["usage"]
+    console.log(usageData)
     for (var dev in usageData){
         console.log(dev,usageData[dev])
-        for (var i=0; i<usageData[dev].length; i++ ){
+        for (let i=0; i<usageData[dev].length; i++ ){
             console.log(usageData[dev][i])
            
 
@@ -65,25 +68,77 @@ function drawWeekly(){
 
 
             if(new Date().valueOf() - tempDate.valueOf() < 7*24*3600*1000 ){
+                console.log(tempDate, tempEndDate)
                 
                   var stTime = new Date(0,0,0,tempDate.getHours(), tempDate.getMinutes(),tempDate.getSeconds())
                   var endTime = new Date(0,0,0,tempEndDate.getHours(),tempEndDate.getMinutes(), tempEndDate.getSeconds())
+                  
                   rows[rows.length] = [days[tempDate.getDay()], dev, stTime, endTime]                
 
             }
         }
         //rows[0] = ["Monday", "llight", new Date(0,0,0,12,0,0), new Date(0,0,0,13,0,0)]
         console.log(rows)
-        drawChart(rows)
+        
     }  
+    drawChart(rows, "timeline")
 });
     
 }
 
+function drawDaily(){
+  get(child(dbRef, '/')).then((snapshot) => {
+    data = snapshot.val()
+    var rows = []
+
+    var curDate = new Date();
+    var usageData = data["Devices"]["usage"]
+
+    for (var dev in usageData){
+      for(let i =0; i< usageData[dev].length; i++){
+        var tempDate = new Date(usageData[dev][i]["st"])
+
+        if (usageData[dev][i]["dur"]<0){
+          var tempEndDate = new Date();
+      }
+      else{
+          var tempEndDate = new Date(usageData[dev][i]["st"] + usageData[dev][i]["dur"])
+      }
+
+      if(new Date().getDay() + magicDayChanger  == tempDate.getDay() ){
+        console.log(tempDate, tempEndDate)
+        
+          var stTime = new Date(0,0,0,tempDate.getHours(), tempDate.getMinutes(),tempDate.getSeconds())
+          var endTime = new Date(0,0,0,tempEndDate.getHours(),tempEndDate.getMinutes(), tempEndDate.getSeconds())
+          
+          rows[rows.length] = [dev, "", stTime, endTime]  
+        
+        
+        }
+
+
+
+
+      }
+
+      
+    }
+    drawChart(rows, "dailychart")
+
+
+
+
+  })
+
+
+
+
+}
 
 
 
 // day, devicename, starttime, endtime
+// devicename, devicename, starttime, endtime
 
 
 
@@ -93,8 +148,9 @@ function drawWeekly(){
 
 
 
-  function drawChart(rows) {
-    var container = document.getElementById("timeline");
+
+  function drawChart(rows, chartId) {
+    var container = document.getElementById(chartId);
     var chart = new google.visualization.Timeline(container);
     var dataTable = new google.visualization.DataTable();
   
@@ -138,7 +194,9 @@ function drawWeekly(){
   }
   
   const main = async () => {
+    drawDaily();
     drawWeekly();
+
   };
   google.charts.load("current", { packages: ["timeline"], callback: main }); //calls main after loading chart library
 
