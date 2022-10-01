@@ -34,7 +34,7 @@ function toggle(device){
 
 }
 
-toggle("Device2")
+
 
 function turnOn(device){
     set(ref(database, "/Devices/" + device ), 1  )
