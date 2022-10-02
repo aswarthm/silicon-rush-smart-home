@@ -1,0 +1,45 @@
+{
+  "Devices": {
+    "Device1": 1,
+    "Device2": 0,
+    "Device3": 1,
+    "Device4": 0,
+    "usage": {
+      "Device1": [
+        {
+          "dur": 1800000,
+          "st": 1664607162626
+        }
+      ],
+      "Device2": [
+        {
+          "dur": 3600000,
+          "st": 1664607862626
+        },
+        {
+          "dur": 900000,
+          "st": 1664606862626
+        }
+      ]
+    }
+  },
+  "FirebaseIOT": {
+    "led": 5
+  },
+  "a": 1,
+  "b": 0,
+  "device1": 0,
+  "device2": 0,
+  "door": 0,
+  "intruder": 0,
+  "lock": 0,
+  "mq2": 0,
+  "pir1": 0,
+  "pir2": 0,
+  "temp": 23.2,
+  "temperature": 292,
+  "test": {
+    "Alarm1": 1,
+    "Alarm2": 1
+  }
+}
