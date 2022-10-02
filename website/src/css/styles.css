@@ -9,6 +9,7 @@
   height: 40px;
   border-radius: 10px;
   background-color: blue;
+  float: left;
 }
 .card-header{
   background-color: #FFB72B;

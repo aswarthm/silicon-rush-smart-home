@@ -58,7 +58,7 @@ function turnOn(device){
     get(child(dbRef, '/')).then((snapshot) => {
         data = snapshot.val()
         var usageData = data["Devices"]["usage"][device]
-    console.log(data)
+    //console.log(data)
 
     set(ref(database, "/Devices/usage/" + device + "/"+ usageData.length), {
 
@@ -80,7 +80,7 @@ function turnOff(device){
       var usageData = data["Devices"]["usage"][device]
   console.log(usageData, usageData.length-1)
 
-  console.log( "/Devices/usage/" + device + "/"+ (usageData.length -1))
+  //console.log( "/Devices/usage/" + device + "/"+ (usageData.length -1))
   set(ref(database, "/Devices/usage/" + device + "/"+ (usageData.length - 1) + "/dur"), new Date().valueOf() - usageData[usageData.length - 1]["st"])
 
 
@@ -94,7 +94,7 @@ function image_lock(){
   get(child(dbRef,"/lock")).then((snapshot)=>{
     var value= snapshot.val();
     var image=document.querySelector(".image-lock");
-    console.log(value);
+    //console.log(value);
     if(value==1){
       image.src="/images/locked.png";
     }
@@ -103,8 +103,48 @@ function image_lock(){
     }
   })
 }
+
+function buttonImages(){
+  get(child(dbRef, '/')).then((snapshot) => {
+    data = snapshot.val()
+    if(data["Devices"]["Device1"])
+      document.getElementById("butOneImg").src = "/images/green.png"
+    
+    else
+      document.getElementById("butOneImg").src = "/images/red.png"
+
+    if(data["Devices"]["Device2"])
+      document.getElementById("butTwoImg").src = "/images/green.png"
+    
+    else
+      document.getElementById("butTwoImg").src = "/images/red.png"
+
+    if(data["Devices"]["Device3"])
+      document.getElementById("butThreeImg").src = "/images/green.png"
+    
+    else
+      document.getElementById("butThreeImg").src = "/images/red.png"
+
+    if(data["Devices"]["Device4"])
+      document.getElementById("butFourImg").src = "/images/green.png"
+    
+    else
+      document.getElementById("butFourImg").src = "/images/red.png"
+    
+
+
+
+  })
+
+
+
+
+
+}
+
 var interval=setInterval(function(){
   image_lock();
+  buttonImages();
   read_data();
 },100);
 
