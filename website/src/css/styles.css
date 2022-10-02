@@ -132,3 +132,16 @@ margin:auto;
   font-family: "Dancing Script";
   font-size: 4rem;
   }
+
+.image-lock{
+  float: left;
+  padding-right: 200px;
+}
+
+#doorstatus{
+  font-family: "Dancing Script";
+  
+  font-size:xx-large;
+  padding-top: 30px;
+
+}

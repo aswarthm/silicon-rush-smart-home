@@ -92,8 +92,8 @@ function image_lock(){
   
   const db = getDatabase();
   const dbRef = ref(getDatabase());
-  get(child(dbRef,"/lock")).then((snapshot)=>{
-    var value= snapshot.val();
+  get(child(dbRef,"/")).then((snapshot)=>{
+    var value= snapshot.val()["lock"];
     var image=document.querySelector(".image-lock");
     image.src="/images/locked.png";
 
@@ -113,9 +113,22 @@ function image_lock(){
     }
     else{
       image.src="/images/locked-1.png";
+    }
+
+    if(snapshot.val()["door"]){
+      document.getElementById("doorstatus").innerHTML = "OPEN"
+      document.getElementById("doorstatus").style.color = "green"
+
+    }
+    else{
+      document.getElementById("doorstatus").innerHTML = "CLOSED"
+      document.getElementById("doorstatus").style.color = "red"
+
+
 
 
     }
+    
 
 
 
