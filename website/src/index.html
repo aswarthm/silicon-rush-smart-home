@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@1&family=Cormorant+Garamond:ital,wght@1,300&family=Parisienne&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/ea82595790.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+    <section id="title">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg">
+            <img src="images/humanity.png" alt="" class="humanity_pic" id="imgHum">
+            <h1 class="h1-title">Home Companion</h1>
+  
+            <button class="navbar-toggler navbar-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogg
+            elerDemo03">
+              <ul class="navbar-nav" id="ul-nav">
+                <li class="nav-item">
+                  <a class="nav-link topics" href="/dashboard.html">Dashboard</a>
+                </li>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="row">
+            <div class="col-lg-6">
+              <h1 class="h3-title" style="color:#fcfcfc;">Home with a difference</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h1 class="h1-title-1">DailyChart</h1>
+    <div id="dailychart" style="height:300px; padding:30px;"></div>
+    <hr>
+    <h1 class="h1-title-1">WeeklyChart</h1>
+    <div id="timeline"  style="height:100vh; padding:30px"></div>
+    <hr>
+    <h1 class="h1-title-1">Power Consumption Table</h1>
+    <div class="details-table" style="padding:30px">
+        <table class="table " style="width:95%; margin: 0 auto;">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width:10%">S No.</th>
+              <th scope="col" style="width:40%">Device</th>
+              <th scope="col" style="width:10%">KWh</th>
+              <th scope="col" style="width: 10%;">Money</th>
+            </tr>
+          </thead>
+          <tbody id="powerTable">
+          </tbody>
+        </table>
+      </div>
+      <hr>
+     
+
+      <div class="card" style="margin:30px; margin-bottom: 100px;">
+        <div class="card-header">
+          <h3 class="h3-pricing">Weekly Power Bill</h3>
+        </div>
+        <div class="card-body">
+          <h4 id="weeklyCost"></h4>
+        </div>
+      </div>
+
+    <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+</body>
+</html>
