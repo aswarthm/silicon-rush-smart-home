@@ -89,18 +89,39 @@ function turnOff(device){
 
 }
 function image_lock(){
+  
   const db = getDatabase();
   const dbRef = ref(getDatabase());
   get(child(dbRef,"/lock")).then((snapshot)=>{
     var value= snapshot.val();
     var image=document.querySelector(".image-lock");
-    console.log(value);
+    image.src="/images/locked.png";
+
+    image.addEventListener("click", function(){
+      console.log(value)
+      if(value==1){
+        set(ref(database, "/lock" ), 0 )
+      }
+      else{
+        set(ref(database, "/lock" ), 1 )
+      }
+      
+    })
+
     if(value==1){
       image.src="/images/locked.png";
     }
     else{
       image.src="/images/locked-1.png";
+
+
     }
+
+
+
+
+    //console.log(value);
+    
   })
 }
 
