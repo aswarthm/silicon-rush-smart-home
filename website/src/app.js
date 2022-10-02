@@ -1,5 +1,5 @@
 var data;
-var magicDayChanger = 0
+var magicDayChanger = 1
 
 
 // Import the functions you need from the SDKs you need
@@ -102,7 +102,7 @@ function drawWeekly(){
     }  
     drawChart(rows, "timeline")
     document.getElementById("powerTable").innerHTML = htmlString
-    document.getElementById("weeklyCost").innerHTML = costPerWeek.toFixed(1)
+    document.getElementById("weeklyCost").innerHTML = "Rs "+costPerWeek.toFixed(1)
 });
     
 }
