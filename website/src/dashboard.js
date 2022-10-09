@@ -95,7 +95,7 @@ function image_lock(){
   get(child(dbRef,"/")).then((snapshot)=>{
     var value= snapshot.val()["lock"];
     var image=document.querySelector(".image-lock");
-    image.src="/images/locked.png";
+    image.src="./images/locked.png";
 
     image.addEventListener("click", function(){
       console.log(value)
@@ -109,10 +109,10 @@ function image_lock(){
     })
 
     if(value==1){
-      image.src="/images/locked.png";
+      image.src="./images/locked.png";
     }
     else{
-      image.src="/images/locked-1.png";
+      image.src="./images/locked-1.png";
     }
 
     if(snapshot.val()["door"]){
