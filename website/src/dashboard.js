@@ -142,28 +142,28 @@ function buttonImages(){
   get(child(dbRef, '/')).then((snapshot) => {
     data = snapshot.val()
     if(data["Devices"]["Device1"])
-      document.getElementById("butOneImg").src = "/images/green.png"
+      document.getElementById("butOneImg").src = "./images/green.png"
     
     else
-      document.getElementById("butOneImg").src = "/images/red.png"
+      document.getElementById("butOneImg").src = "./images/red.png"
 
     if(data["Devices"]["Device2"])
-      document.getElementById("butTwoImg").src = "/images/green.png"
+      document.getElementById("butTwoImg").src = "./images/green.png"
     
     else
-      document.getElementById("butTwoImg").src = "/images/red.png"
+      document.getElementById("butTwoImg").src = "./images/red.png"
 
     if(data["Devices"]["Device3"])
-      document.getElementById("butThreeImg").src = "/images/green.png"
+      document.getElementById("butThreeImg").src = "./images/green.png"
     
     else
-      document.getElementById("butThreeImg").src = "/images/red.png"
+      document.getElementById("butThreeImg").src = "./images/red.png"
 
     if(data["Devices"]["Device4"])
-      document.getElementById("butFourImg").src = "/images/green.png"
+      document.getElementById("butFourImg").src = "./images/green.png"
     
     else
-      document.getElementById("butFourImg").src = "/images/red.png"
+      document.getElementById("butFourImg").src = "./images/red.png"
     
   })
 }
